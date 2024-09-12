@@ -1,11 +1,37 @@
 import React from "react";
+import { Formik, Form, Field } from "formik";
+import { nanoid } from "nanoid";
 
-const ContactForm = () => {
+const ContactForm = ({ onAdd }) => {
+  const handleSubmit = (values, actions) => {
+    onAdd({
+      ...values,
+      id: nanoid(),
+    });
+    actions.resetForm();
+  };
+
   return (
-    <div>
-      some form with add button
-      <button type="button">Add Contact</button>
-    </div>
+    <Formik
+      initialValues={{
+        name: "",
+        number: "",
+      }}
+      onSubmit={handleSubmit}
+    >
+      <Form>
+        <label>
+          <span>Name</span>
+          <Field type="text" name="name"></Field>
+        </label>
+        <label>
+          <span>Number</span>
+          <Field type="tel" name="number"></Field>
+        </label>
+
+        <button type="submit">Add contact</button>
+      </Form>
+    </Formik>
   );
 };
 
