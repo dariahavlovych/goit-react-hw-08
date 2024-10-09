@@ -22,7 +22,7 @@ const slice = createSlice({
       })
       .addCase(deleteContact.fulfilled, (state, action) => {
         state.contacts.items = state.contacts.items.filter(
-          (item) => item.id !== action.payload
+          (item) => item.id !== action.payload.id
         );
       })
       .addMatcher(
