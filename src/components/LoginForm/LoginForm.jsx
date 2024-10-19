@@ -3,6 +3,7 @@ import * as Yup from "yup";
 import s from "./LoginForm.module.css";
 import { useDispatch } from "react-redux";
 import { login } from "../../redux/auth/operations";
+import toast from "react-hot-toast";
 
 const LoginForm = () => {
   const dispatch = useDispatch();
@@ -11,9 +12,16 @@ const LoginForm = () => {
     password: "",
   };
 
-  const handleSubmit = (values, actions) => {
-    dispatch(login(values));
-    actions.resetForm();
+  const handleSubmit = (values, options) => {
+    dispatch(login(values))
+      .unwrap()
+      .then((res) => {
+        toast(`Welcome, ${res.user.name}!`);
+      })
+      .catch(() => {
+        toast.error("invalid credentials");
+      });
+    options.resetForm();
   };
 
   const emailRegex =
@@ -37,12 +45,12 @@ const LoginForm = () => {
       <Form className={s.formWrapper}>
         <label className={s.label}>
           <span>Email</span>
-          <Field type="text" name="email" className={s.input}></Field>
+          <Field type="email" name="email" className={s.input}></Field>
           <ErrorMessage name="email" component="span" className={s.error} />
         </label>
         <label className={s.label}>
           <span>Password</span>
-          <Field type="text" name="password" className={s.input}></Field>
+          <Field type="password" name="password" className={s.input}></Field>
           <ErrorMessage name="password" component="span" className={s.error} />
         </label>
 

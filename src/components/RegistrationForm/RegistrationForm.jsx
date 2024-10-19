@@ -54,12 +54,12 @@ const RegistrationForm = () => {
         </label>
         <label className={s.label}>
           <span>Email</span>
-          <Field type="text" name="email" className={s.input}></Field>
+          <Field type="email" name="email" className={s.input}></Field>
           <ErrorMessage name="email" component="span" className={s.error} />
         </label>
         <label className={s.label}>
           <span>Password</span>
-          <Field type="text" name="password" className={s.input}></Field>
+          <Field type="password" name="password" className={s.input}></Field>
           <ErrorMessage name="password" component="span" className={s.error} />
         </label>
 
