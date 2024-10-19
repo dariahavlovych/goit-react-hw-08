@@ -25,6 +25,9 @@ const slice = createSlice({
           (item) => item.id !== action.payload.id
         );
       })
+      .addCase(logout.fulfilled, () => {
+        initialState;
+      })
       .addMatcher(
         isAnyOf(
           fetchContacts.pending,
