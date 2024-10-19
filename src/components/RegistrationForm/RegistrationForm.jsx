@@ -17,23 +17,25 @@ const RegistrationForm = () => {
     actions.resetForm();
   };
 
-  //   const nameRegex = /^[ a-zA-Z\-\’]+$/;
-  //   const numberRegex = /^[0-9.-]*$/;
+  const nameRegex = /^[ a-zA-Z\-\’]+$/;
+  const emailRegex =
+    /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+  const passRegex = /^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
 
   const registerFormSchema = Yup.object().shape({
     name: Yup.string()
-      //   .matches(nameRegex, "Invalid name")
+      .matches(nameRegex, "Invalid name")
       .min(3, "Name is too short!")
       .max(50, "Name should contain max 50 symbols")
       .required("Name is required"),
     email: Yup.string()
-      //   .matches(nameRegex, "Invalid name")
-      //   .min(3, "Name is too short!")
-      //   .max(50, "Name should contain max 50 symbols")
+      .matches(emailRegex, "Invalid email")
       .required("Email is required"),
     password: Yup.string()
-      //   .matches(numberRegex, "Number is invalid")
-      .min(8, "Password is too short!")
+      .matches(
+        passRegex,
+        "Password must be at least 8 characters long and contains a symbol, upper and lower case letters and a number"
+      )
       .max(50, "Password should contain max 50 symbols")
       .required("Password is required"),
   });

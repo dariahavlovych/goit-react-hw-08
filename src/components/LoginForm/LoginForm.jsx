@@ -16,17 +16,14 @@ const LoginForm = () => {
     actions.resetForm();
   };
 
-  //   const nameRegex = /^[ a-zA-Z\-\’]+$/;
-  //   const numberRegex = /^[0-9.-]*$/;
+  const emailRegex =
+    /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
 
   const loginFormSchema = Yup.object().shape({
     email: Yup.string()
-      //   .matches(nameRegex, "Invalid name")
-      //   .min(3, "Name is too short!")
-      //   .max(50, "Name should contain max 50 symbols")
+      .matches(emailRegex, "Invalid email")
       .required("Email is required"),
     password: Yup.string()
-      //   .matches(numberRegex, "Number is invalid")
       .min(8, "Password is too short!")
       .max(50, "Password should contain max 50 symbols")
       .required("Password is required"),
