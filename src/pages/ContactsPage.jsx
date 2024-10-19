@@ -11,9 +11,11 @@ const ContactsPage = () => {
   const dispatch = useDispatch();
   const isLoading = useSelector(selectLoading);
   const errorMessage = useSelector(selectError);
+
   useEffect(() => {
     dispatch(fetchContacts());
   }, [dispatch]);
+
   return (
     <div className="appWrapper">
       <h1 className="header">Phonebook</h1>

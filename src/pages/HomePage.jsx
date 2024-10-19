@@ -1,7 +1,7 @@
 const HomePage = () => {
   return (
     <div>
-      <h2>HOME</h2>
+      <h2>Welcome to Contacts Book App</h2>
     </div>
   );
 };
