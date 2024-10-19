@@ -3,6 +3,7 @@ import * as Yup from "yup";
 import s from "./RegistrationForm.module.css";
 import { useDispatch } from "react-redux";
 import { register } from "../../redux/auth/operations";
+import toast from "react-hot-toast";
 
 const RegistrationForm = () => {
   const dispatch = useDispatch();
@@ -13,7 +14,14 @@ const RegistrationForm = () => {
   };
 
   const handleSubmit = (values, actions) => {
-    dispatch(register(values));
+    dispatch(register(values))
+      .unwrap()
+      .then((res) => {
+        toast(`Welcome, ${res.user.name}!`);
+      })
+      .catch(() => {
+        toast.error("Email already exists");
+      });
     actions.resetForm();
   };
 

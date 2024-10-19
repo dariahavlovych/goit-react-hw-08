@@ -1,11 +1,6 @@
 import "./App.css";
 import { Route, Routes } from "react-router-dom";
 import Layout from "./components/Layout";
-// import HomePage from "./pages/HomePage";
-// import ContactsPage from "./pages/ContactsPage";
-// import LoginPage from "./pages/LoginPage";
-// import RegistrationPage from "./pages/RegistrationPage";
-// import NotFoundPage from "./pages/NotFoundPage";
 import { useDispatch, useSelector } from "react-redux";
 import { Suspense, lazy, useEffect } from "react";
 import { refreshUser } from "./redux/auth/operations";
