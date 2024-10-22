@@ -27,7 +27,7 @@ const slice = createSlice({
         );
       })
       .addCase(logout.fulfilled, (state) => {
-        state.items = [];
+        state.contacts.items = [];
       })
       .addMatcher(
         isAnyOf(
