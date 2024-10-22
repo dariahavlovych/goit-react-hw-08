@@ -26,8 +26,8 @@ const slice = createSlice({
           (item) => item.id !== action.payload.id
         );
       })
-      .addCase(logout.fulfilled, () => {
-        initialState;
+      .addCase(logout.fulfilled, (state) => {
+        state.items = [];
       })
       .addMatcher(
         isAnyOf(
